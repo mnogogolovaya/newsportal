@@ -30,4 +30,30 @@ class Controller {
 	public static function error404() {
 		include_once 'view/error404.php';
 	}
+
+	public static function InsertComment($c,$id) {
+		Comments::InsertComment($c,$id);
+		//serif:NewByID($id);
+		header('Location:new?id='.$id.'#ctable');
+	}
+
+	// список комментариев
+	public static function Comments($newsid) {
+		$arr = Comments::getCommentsByNewsID($newsid);
+		ViewComments::CommentsByNews($arr);
+	}
+
+	// количесто комментариев к новости
+	public static function CommentsCount($newsid) {
+		$arr = Comments::getCommentsCountByNewsID($newsd);
+		ViewComments::CommentsCount($arr);
+	}
+
+	// ссылка - переход к списку комментариев
+	public static function CommentsCountWithAncor($newsid) {
+		$arr = Comments::getCommentsCountByNewsID($newsd);
+		ViewComments::CommentsCountWithAncor($arr);
+	}
+
+
 }
